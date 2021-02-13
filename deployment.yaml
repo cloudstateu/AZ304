@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: containerapp
+  labels:
+    app: containerapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: containerapp
+  template:
+    metadata:
+      labels:
+        app: containerapp
+    spec:
+      containers:
+      - name: containerapp
+        image: az304registrymztest.azurecr.io/containerapp
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: mynewakssecret
